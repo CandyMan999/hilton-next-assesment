@@ -56,10 +56,8 @@ class Card extends Component {
               <select
                 onChange={e => handleChange(e, "adults", index)}
                 name="adults"
+                value={values.adults}
               >
-                <option selected default value={values.adults} disabled>
-                  {values.adults}
-                </option>
                 <option value={1} disabled={!checked && index > 0}>
                   1
                 </option>
@@ -75,10 +73,8 @@ class Card extends Component {
               <select
                 onChange={e => handleChange(e, "children", index)}
                 name="chidren"
+                value={values.children}
               >
-                <option selected default value={values.children} disabled>
-                  {values.children}
-                </option>
                 <option value={0} disabled={!checked && index > 0}>
                   0
                 </option>

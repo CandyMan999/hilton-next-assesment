@@ -218,13 +218,9 @@ function (_Component) {
         onChange: function onChange(e) {
           return handleChange(e, "adults", index);
         },
-        name: "adults"
+        name: "adults",
+        value: values.adults
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
-        selected: true,
-        default: true,
-        value: values.adults,
-        disabled: true
-      }, values.adults), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
         value: 1,
         disabled: !checked && index > 0
       }, "1"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
@@ -236,13 +232,9 @@ function (_Component) {
         onChange: function onChange(e) {
           return handleChange(e, "children", index);
         },
-        name: "chidren"
+        name: "chidren",
+        value: values.children
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
-        selected: true,
-        default: true,
-        value: values.children,
-        disabled: true
-      }, values.children), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
         value: 0,
         disabled: !checked && index > 0
       }, "0"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("option", {
@@ -420,7 +412,9 @@ function (_Component) {
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "handleSubmit", function () {
       alert("you have just booked ".concat(_this.state.largestRoom + 1, " rooms, refresh the page to see saved changes"));
       window.localStorage.clear();
-      var results = {};
+      var results = {}; //this is unnecessary for this application but if it was a realworld app you would only want to save the data of the rooms booked
+      // to the database
+
       results.rooms = _this.state.rooms.slice(0, Number(_this.state.largestRoom) + 1);
       results.largestRoom = _this.state.largestRoom;
       window.localStorage.setItem("results", _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(results));

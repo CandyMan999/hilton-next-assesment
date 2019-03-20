@@ -63,6 +63,9 @@ class Reservation extends Component {
     );
     window.localStorage.clear();
     const results = {};
+
+    //this is unnecessary for this application but if it was a realworld app you would only want to save the data of the rooms booked
+    // to the database
     results.rooms = this.state.rooms.slice(
       0,
       Number(this.state.largestRoom) + 1
