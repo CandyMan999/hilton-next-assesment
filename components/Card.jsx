@@ -17,10 +17,7 @@ class Card extends Component {
     if (prevProps.largestRoom > this.props.largestRoom) {
       this.setState({ checked: false });
     }
-    if (this.props.largestRoom > this.props.index && !this.state.checked) {
-      this.setState({ checked: true });
-    }
-    if (this.props.largestRoom === this.props.index && !this.state.checked) {
+    if (this.props.largestRoom >= this.props.index && !this.state.checked) {
       this.setState({ checked: true });
     }
   }

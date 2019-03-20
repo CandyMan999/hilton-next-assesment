@@ -3,6 +3,7 @@ import Card from "../Card";
 import range from "lodash/range";
 
 class Reservation extends Component {
+  //this will set our initial default values
   state = {
     largestRoom: 0,
     rooms: [
@@ -13,8 +14,9 @@ class Reservation extends Component {
     ]
   };
   componentDidMount() {
+    //this will grab our data from localstorage if it exsists
     const results = JSON.parse(window.localStorage.getItem("results"));
-
+    //if it does exsist we will spread in the results up to the index of the largest room selected and add the default values of the remaining rooms back to state
     if (results !== null) {
       const remainingRooms = this.state.rooms.slice(
         Number(results.largestRoom),
@@ -28,23 +30,25 @@ class Reservation extends Component {
   }
 
   handleChange = (e, name, index, checked) => {
+    //if a room is unchecked for whatever reason from that index on will get reset in the state back to the initial values
     if (name === "largestRoom" && !checked) {
       const reamaining = this.state.rooms.slice(Number(index), 4);
+
       reamaining.forEach(object => {
         object.adults = 1;
         object.children = 0;
       });
-      console.log("!!!", reamaining);
-      console.log("lenght:", this.state.rooms.length, "index: ", index - 1);
+
       this.setState({
         [name]: e.target.value - 1,
         rooms: [...this.state.rooms.slice(0, index), ...reamaining]
       });
     }
-
+    //this gets the value of the largest room
     if (name === "largestRoom" && checked) {
       this.setState({ [name]: Number(e.target.value) });
     }
+    //this gets the value of children and adults and spreads it into state
     if (name === "children" || name === "adults") {
       this.setState({
         rooms: [
@@ -110,6 +114,7 @@ const buttonStyle = {
   color: "white",
   display: "flex",
   justifyContent: "center",
-  borderRadius: "5px"
+  borderRadius: "5px",
+  cursor: "pointer"
 };
 export default Reservation;
