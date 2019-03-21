@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import Card from "../Card";
+import React from "react";
+import Card from "./Card";
 import range from "lodash/range";
+import { getResults } from "../utils/helpers";
 
-class Reservation extends Component {
+class Reservation extends React.PureComponent {
   //this will set our initial default values
+
   state = {
     largestRoom: 0,
     rooms: [
@@ -13,9 +15,12 @@ class Reservation extends Component {
       { adults: 1, children: 0 }
     ]
   };
+
   componentDidMount() {
     //this will grab our data from localstorage if it exsists
-    const results = JSON.parse(window.localStorage.getItem("results"));
+    //typically this would be done in a saga and this would be done inside of a constructor function as componentDidMount is causing a second rerendering
+    //however in this instance we need to use componenetDidMount
+    const results = getResults();
     //if it does exsist we will spread in the results up to the index of the largest room selected and add the default values of the remaining rooms back to state
     if (results !== null) {
       const remainingRooms = this.state.rooms.slice(
@@ -91,6 +96,7 @@ class Reservation extends Component {
           {range(4).map(roomId => (
             <Card
               key={roomId}
+              checked={this.state.largestRoom >= roomId}
               values={this.state.rooms[roomId]}
               largestRoom={this.state.largestRoom}
               index={roomId}
