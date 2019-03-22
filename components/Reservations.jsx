@@ -19,7 +19,7 @@ class Reservation extends React.PureComponent {
   componentDidMount() {
     //this will grab our data from localstorage if it exsists
     //typically this would be done in a saga and this would be done inside of a constructor function as componentDidMount is causing a second rerendering
-    //however in this instance we need to use componenetDidMount
+    //however in this instance we need to use componentDidMount
     const results = getResults();
     //if it does exsist we will spread in the results up to the index of the largest room selected and add the default values of the remaining rooms back to state
     if (results !== null) {
@@ -37,16 +37,16 @@ class Reservation extends React.PureComponent {
   handleChange = (e, name, index, checked) => {
     //if a room is unchecked for whatever reason from that index on will get reset in the state back to the initial values
     if (name === "largestRoom" && !checked) {
-      const reamaining = this.state.rooms.slice(Number(index), 4);
+      const remaining = this.state.rooms.slice(Number(index), 4);
 
-      reamaining.forEach(object => {
+      remaining.forEach(object => {
         object.adults = 1;
         object.children = 0;
       });
 
       this.setState({
         [name]: e.target.value - 1,
-        rooms: [...this.state.rooms.slice(0, index), ...reamaining]
+        rooms: [...this.state.rooms.slice(0, index), ...remaining]
       });
     }
     //this gets the value of the largest room
@@ -104,7 +104,11 @@ class Reservation extends React.PureComponent {
             />
           ))}
         </div>
-        <button style={buttonStyle} onClick={this.handleSubmit}>
+        <button
+          className="submit"
+          style={buttonStyle}
+          onClick={this.handleSubmit}
+        >
           Submit
         </button>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ handleChange, index, values, checked }) => {
   return (
-    <div style={cardStyles}>
+    <div className="card" style={cardStyles}>
       {index > 0 && (
         <input
           style={{
